@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Feed</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+        }
+
+        .navbar {
+            background-color: #fff;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            {% comment %} justify-content: space-between; {% endcomment %}
+            align-items: center;
+            justify-content:space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .menu {
+            margin: 0 16px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            text-align:left;
+        }
+
+        .logout-button {
+            background-color: #333;
+            color: #fff;
+            text-decoration:none;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .feed-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        .interaction-bar {
+            padding: 16px;
+        }
+
+        .interaction-icons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .interaction-icons i {
+            font-size: 24px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        .like-count {
+            font-weight: bold;
+        }
+
+        .comment-section {
+            margin-top: 8px;
+        }
+
+        .comment {
+            margin-bottom: 8px;
+        }
+
+        .add-comment-section {
+            display: flex;
+            margin-top: 8px;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .comment-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <a href="#" class="logo">smartsubmitucp</a>
+    <div class="menu">
+    <a href="feed" class="menu">Feed</a>
+    <a href="assignment" class="menu">Assignments</a>
+    <a href="{% url 'profile' %}" class="menu">Profile</a>
+    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    </div>
+</div>
+
+<!-- Feed Container -->
+<div class="feed-container">
+
+    <!-- Example Post -->
+    <div class="post">
+        <div class="post-header">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+            <span class="username">username</span>
+        </div>
+        <img src="https://via.placeholder.com/600" alt="Post Image" class="post-image">
+        <div class="interaction-bar">
+            <div class="interaction-icons">
+                <i class="far fa-heart" onclick="toggleLike(this)"></i>
+                <i class="far fa-comment" onclick="toggleCommentSection(this)"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <div class="like-count">42 likes</div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment">
+                    <span class="username">commenter:</span> This is a comment on the post.
+                </div>
+                <!-- Add more comments here -->
+            </div>
+            <div class="add-comment-section">
+                <input type="text" class="comment-input" placeholder="Add a comment">
+                <button class="comment-button" onclick="addComment(this)">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more posts here -->
+
+</div>
+
+<!-- Include Font Awesome for icons -->
+{% comment %} <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script> {% endcomment %}
+
+<script>
+    console.log("Hello ")
+    function toggleLike(icon) {
+        icon.classList.toggle('fas'); // Toggle filled heart
+        icon.classList.toggle('far'); // Toggle empty heart
+        
+    }
+
+    function toggleCommentSection(icon) {
+        const post = icon.closest('.post');
+        const commentSection = post.querySelector('.comment-section');
+        commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function addComment(button) {
+        const post = button.closest('.post');
+        const commentInput = post.querySelector('.comment-input');
+        const commentsSection = post.querySelector('.comment-section');
+
+        if (commentInput.value.trim() !== '') {
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `<span class="username">You:</span> ${commentInput.value}`;
+            commentsSection.appendChild(newComment);
+            commentInput.value = '';
+        }
+    }
+</script>
+<script>
+</script>
+</body>
