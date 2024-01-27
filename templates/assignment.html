@@ -87,6 +87,17 @@
             font-weight: bold;
             color: #333;
         }
+
+        .submitted {
+            padding: 10px;
+            color: white;
+            background: red;
+        }
+
+        .hideIT {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -106,36 +117,53 @@
 <div class="assignment-container">
     {% for assignment in assignments %}
     <!-- Assignment Details Section -->
-    <div class="assignment-details">
-        <h2>{{ assignment.title }}</h2>
-        <h2>{{ assignment.id }}</h2>
-        <p>{{ assignment.description }}</p>
-        <p>Last Date: {{ assignment.last_date }}</p>
-    </div>
-    
-    <!-- Upload Assignment Section -->
+        <div class="assignment-details">
+            <h2>{{ assignment.title }}</h2>
+            <h2>{{ assignment.id }}</h2>
+            <p>{{ assignment.description }}</p>
+            <p>Last Date: {{ assignment.last_date }}</p>
+        </div>
+        
+    {% for sub in submissions %}
+        {% if sub.assignment.id == assignment.id %}
+            <div class="submitted">
+                Submitted!
+            </div> 
+        {% endif %}
+    {% endfor %}
+
     <div class="upload-section">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" name="file" multiple>
-            <input type="text" name="assignment_id" value="{{ assignment.id }}">
-            <input type="text" name="student_id" value="{{ user.id }}">
+            <input hidden type="text" name="assignment_id" value="{{ assignment.id }}">
+            <input hidden type="text" name="student_id" value="{{ user.id }}">
             <button type="submit">Submit</button>
         </form>
-</div>
+    </div>
+
+{% comment %} {% endif %} {% endcomment %}
+
 {% endfor %}
 
 <!-- Include JavaScript for dynamic date and time -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the current date and time
-        var currentDate = new Date();
+
+        var submitted = true;
+
+        console.log(submitted)
         
-        // Format the date and time
-        var formattedDate = currentDate.toDateString() + ' ' + currentDate.toLocaleTimeString();
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var submitted = false;
+
+        console.log(submitted)
         
-        // Display the formatted date and time in the last-date element
-        document.getElementById('last-date').innerText = 'Last Date: ' + formattedDate;
     });
 </script>
 
