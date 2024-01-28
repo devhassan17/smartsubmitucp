@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title>Modern Login Page | AsmrProg</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h3 style="color: #512da8; margin-bottom: 5px;">Contact Admin</h3>
+                <h4 style="color: #512da8; margin-bottom: 5px;">Share Details:</h4>
+                <ul style="list-style-type: bullets; padding: 0; margin-top: 0;">
+                <li style="margin-bottom: 5px;">Send your Name</li>
+                <li style="margin-bottom: 5px;">Send your Email</li>
+                <li style="margin-bottom: 5px;">Send your Username</li>
+                </ul>
+                <h5 style="color: #333; margin-top: 5px;">Email: admin@gmail.com</h5>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form  methods="POST">
+                {% csrf_token %}
+                <h1>Sign In</h1>
+                
+                <input class="SignInField" placeholder="Email:" type="text" id="email" name="username" required>
+                
+                <input class="SignInField" placeholder="Password:" type="password" id="password" name="password" required>
+                <input  style="background-color: #512da8; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="login-button" ></input>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Click on Sign In to Access your Portal</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Click if you forgot your password</p>
+                    <button class="hidden" id="register">Forgot Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

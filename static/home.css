@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.links{
+    margin: auto auto;
+    text-align: center;
+
+    color: #fff;
+    text-decoration: none;
+}
+.container1 {
+    width: 75%;
+    margin: 1% auto;
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    padding: 10%;
+    position: relative;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+
+.container2 {
+    width: 70%;
+    height: 35vh;
+    background-color: #c9d6ff4c;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    margin: 10% auto;
+    font-family: 'Montserrat', sans-serif;
+    
+    position: absolute;
+    top: 43%;
+    left: 14%;
+   
+
+}
+.std-div{
+    height: 100%;
+    width: 33.3%;
+    text-align: center;
+    border: #fff 1px solid;
+    background-color: #512da8;
+}
+.tch-div{
+    height: 100%;
+    width: 33.3%;
+    border: #fff 1px solid;
+    background-color: #512da8;
+}
+.adm-div{
+    height: 100%;
+    width: 33.3%;
+    border: #fff 1px solid;
+    background-color: #512da8;
+}
+}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container1, .container2 {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .logo {
+        margin-left: 23%;
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container1, .container2 {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .logo {
+        margin-left: 23%;
+        margin-top: 0;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+    .container1{
+        width: 300%;
+        margin-left: -10%;
+       
+        margin-top: 200%;
+      
+    }
+    
+    .container2 {
+        width: 90%;
+        padding: 3%;
+        margin-left: -10%;
+        margin-top:12%;
+    }
+
+    .title{
+        margin-left: 6%;
+    }
+
+    .logo {
+        margin-left: 45%;
+        margin-top: 0;
+    }
+}

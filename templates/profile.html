@@ -66,8 +66,8 @@
         }
 
         .user-avatar {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             margin-bottom: 10px;
         }
@@ -123,7 +123,7 @@
     <div class="left-section">
         <div class="user-profile">
             <img src="https://via.placeholder.com/100" alt="User Avatar" class="user-avatar">
-            <div class="user-name">John Doe</div>
+            <div class="user-name">{{ user.username }}</div>
         </div>
     </div>
 
@@ -131,9 +131,12 @@
     <div class="right-section">
         <div class="user-details">
             <h2>User Details</h2>
-            <p><strong>Email:</strong> john.doe@example.com</p>
-            <p><strong>Role:</strong> Student</p>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet feugiat est.</p>
+            <p><strong>First Name:</strong>{{  user.first_name }}</p>
+            <p><strong>Last Name:</strong>{{  user.last_name }}</p>
+            <p><strong>Is_Active:</strong>{{  user.is_active }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Date Joined:</strong> {{  user.date_joined }} </p>
+            <p><strong>Last Login:</strong>{{  user.last_login }}</p>
         </div>
     </div>
 

@@ -20,8 +20,8 @@ def login_view(request):
                 messages.error(request, 'Invalid username or password.')
         else:
             messages.error(request, 'Username or password missing.')
-            return render(request, 'index.html') 
-    return render(request, 'index.html')
+            return render(request, 'login.html') 
+    return render(request, 'login.html')
 
 def home(request):
     return render(request, "home.html", {})  
@@ -77,7 +77,9 @@ def assignment(request):
 
 @login_required
 def profile(request):
-    return render(request, "profile.html", {})  
+    user = request.user  # Get the current logged-in user
+    # Pass the user object to the template
+    return render(request, 'profile.html', {'user': user})
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
