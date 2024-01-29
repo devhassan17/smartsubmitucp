@@ -1,171 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Page</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fafafa;
-        }
-
-        .navbar {
-            background-color: #fff;
-            padding: 16px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            {% comment %} justify-content: space-between; {% endcomment %}
-            align-items: center;
-            justify-content:space-between;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .menu {
-            margin: 0 16px;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            text-align:left;
-        }
-        .logout-button {
-            background-color: #333;
-            color: #fff;
-            text-decoration:none;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .assignment-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .assignment-details {
-            margin-bottom: 20px;
-        }
-
-        .assignment-details h2 {
-            margin-bottom: 10px;
-        }
-
-        .upload-section {
-            display: flex;
-            align-items: center;
-        }
-
-        .upload-btn {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        #file-upload {
-            display: none;  /* Hide the file input */
-        }
-
-        .last-date {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .submitted {
-            padding: 10px;
-            color: white;
-            background: red;
-        }
-
-        .hideIT {
-            display: none;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Assignment Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    /* Basic styling for navbar and assignment section */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #c9d6ff;
+        background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      height:50px;
+      background-color: white; /* Set navbar background color to white */
+    }
+    .navbar img {
+      width: 220px;
+      height: 40px;
+    }
+    .menus {
+      display: flex;
+      gap: 50px;
+      align-items: center; /* Align menu items vertically */
+    }
+    .menus a {
+      color: black; /* Set menu text color to black */
+      text-decoration: none;
+    }
+    .menus a:hover {
+      text-decoration: underline;
+    }
+    .logout-button {
+      background-color: #512da8;
+      height:50px;
+      width:100px;
+      font-size:15px;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .logout-button:hover {
+      background-color: red;
+    }
+    .assignment-section {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .assignment-title {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .assignment-description {
+      margin-bottom: 10px;
+    }
+    .due-date {
+      font-style: italic;
+    }
+    .upload-button {
+      background-color: #512da8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .file-btn {
+      height: 40px;
+    }
+    .upload-button:hover {
+      background-color: #fff;
+      color:#512da8;
+      border: 1px solid #512da8;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Navigation Bar -->
-<div class="navbar">
-    <a href="#" class="logo">smartsubmitucp</a>
-    <div class="menu">
-    <a href="feed" class="menu">Feed</a>
-    <a href="assignment" class="menu">Assignments</a>
-    <a href="{% url 'profile' %}" class="menu">Profile</a>
-    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+  <nav class="navbar">
+    <img src="static/logo.png" alt="Your logo">
+    <div class="menus">
+      <a href="feed">Feed</a>
+      <a href="assignment">Assignments</a>
+      <a href="profile">Profile</a>
+      <button class="logout-button">Logout</button>
     </div>
-</div>
+  </nav>
 
-<!-- Assignment Container -->
-<div class="assignment-container">
+  <section class="assignment-section">
     {% for assignment in assignments %}
-    <!-- Assignment Details Section -->
-        <div class="assignment-details">
-            <h2>{{ assignment.title }}</h2>
-            <h2>{{ assignment.id }}</h2>
-            <p>{{ assignment.description }}</p>
-            <p>Last Date: {{ assignment.last_date }}</p>
-        </div>
-        
+    <h2 class="assignment-title">{{ assignment.title }}</h2>
+    <p class="assignment-description">{{ assignment.description }}</p>
+    <p class="due-date">{{ assignment.last_date }}</p>
     {% for sub in submissions %}
-        {% if sub.assignment.id == assignment.id %}
-            <div class="submitted">
-                Submitted!
-            </div> 
-        {% endif %}
-    {% endfor %}
-
-    <div class="upload-section">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="file" multiple>
-            <input hidden type="text" name="assignment_id" value="{{ assignment.id }}">
-            <input hidden type="text" name="student_id" value="{{ user.id }}">
-            <button type="submit">Submit</button>
-        </form>
+    {% if sub.assignment.id == assignment.id %}
+    <div class="submitted">
+      Submitted!
     </div>
+    {% endif %}
+    {% endfor %}
+    <div class="upload-section">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input class="file-btn" type="file" name="file" multiple>
+        <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
+        <input type="hidden" name="student_id" value="{{ user.id }}">
+        <button class="upload-button" type="submit">Submit</button>
+      </form>
+    </div>
+    <hr>
+    {% endfor %}
+  </section>
 
-{% comment %} {% endif %} {% endcomment %}
+  <script>
+    const uploadButton = document.querySelector(".upload-button");
+    const fileInput = document.querySelector(".file-btn");
 
-{% endfor %}
-
-<!-- Include JavaScript for dynamic date and time -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        var submitted = true;
-
-        console.log(submitted)
-        
+    uploadButton.addEventListener("click", () => {
+      fileInput.click();
     });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        var submitted = false;
-
-        console.log(submitted)
-        
-    });
-</script>
-
+  </script>
 </body>
 </html>

@@ -26,6 +26,7 @@ urlpatterns = [
     path("assignment", views.assignment),
     path("profile", views.profile ,name='profile'),
     path('logout', views.delete_session, name='logout'),
+    path('testing', views.testing, name='examplet'),
     path('', views.upload_assignment, name='upload_assignment'),
 
 ]

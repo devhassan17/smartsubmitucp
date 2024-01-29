@@ -4,37 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Your Website Name</title>
     <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 <body>
-    <div class="container1">
-        <center>
-        <h1>SmartSubmitUcp</h1>
-        </center>
-        <div class="container2">
-            <div class="std-div">
-                {% comment %} <center> {% endcomment %}
-                    <a class="links" href="login_user" >
-                        Student
-                    </a>
-                </center>
-            </div>
-            <div class="tch-div">
-                {% comment %} <center> {% endcomment %}
-                    <a class="links" href="login_user" >
-                        Student
-                    </a>
-                </center>
-            </div>
-            <div class="adm-div">
-                {% comment %} <center> {% endcomment %}
-                    <a  class="links" href="login_user" >
-                        Student
-                    </a>
-                </center>
-            </div>
+    <header>
+        <div class="logo">
+            <img src="static/logo.png" alt="Your logo">
         </div>
-    </div>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>SmartSubmitUCP</h1>
+            <p> SmartSubmitUCP enhances teacher-student communication, fostering a streamlined educational experience.</p>
+            
+        </section>
+        <section class="login-buttons-container">
+          <center>  <h2> Login </h2> </center>
+            <div class="login-buttons">
+               <a href="login_user" > <button class="student">Student Login</button> </a>
+                <button class="teacher">Teacher Login</button>
+                <button class="admin">Admin Login</button>
+            </div>
+        </section>
+    </main>
+    <center>
+    <footer>
+        <p>&copy; 2024 SmartSubmitUCP</p>
+    </footer>
+</center>
 </body>
 </html>

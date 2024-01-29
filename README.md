@@ -57,3 +57,9 @@ SmartSubmitUCP is a web project developed using Django, designed to serve as an 
 SmartSubmitUCP provides a collaborative platform where teachers can share content, manage assignments, and review student submissions. Students have access to relevant posts from their respective teachers, can upload assignments, and interact with the content. User profiles are available for both teachers and students. The admin oversees teacher account creation and class assignments.
 
 Feel free to contribute, suggest improvements, or report issues!
+
+
+
+
+
+

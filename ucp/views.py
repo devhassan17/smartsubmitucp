@@ -25,7 +25,48 @@ def login_view(request):
 
 def home(request):
     return render(request, "home.html", {})  
+def testing(request):
+    student = get_object_or_404(Student, user=request.user)
+    assignments = Assignment.objects.filter(teacher__students=student)
 
+    submissions = Submission.objects.filter(student=student)
+
+    
+    if request.method == 'POST':
+        
+        assignment_picture = request.FILES['file']
+
+        print(assignment_picture)
+
+        if assignment_picture:
+        
+            assignment_id = request.POST.get('assignment_id')
+
+            print(assignment_id)
+
+            assignment = get_object_or_404(Assignment, id=assignment_id)
+            student_ = get_object_or_404(Student, user=request.user)
+
+            already_submitted = Submission.objects.filter(
+                assignment=assignment,
+                student=student
+            ).exists()
+
+            if already_submitted:
+                return redirect('/assignment')
+
+            submission = Submission.objects.create(
+                file=assignment_picture,
+                assignment=assignment,
+                student=student_
+            )
+
+            return redirect('/assignment')
+        else:
+            messages.error(request, 'No files uploaded.')
+
+    return render(request, 'example.html', {'assignments': assignments, "user": request.user, "submissions": submissions})
+  
 @login_required
 def feed(request):
     return render(request, "feed.html", {})  
