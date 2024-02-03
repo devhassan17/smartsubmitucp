@@ -1,42 +1,141 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Show Profile</title>
-  <link rel="stylesheet" href="{% static 'profile.css' %}">
+  <title>My Assignment Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    /* Basic styling for navbar and assignment section */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #c9d6ff;
+        background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      height:50px;
+      background-color: white; /* Set navbar background color to white */
+    }
+    .navbar img {
+      width: 220px;
+      height: 40px;
+    }
+    .menus {
+      display: flex;
+      gap: 50px;
+      align-items: center; /* Align menu items vertically */
+    }
+    .menus a {
+      color: black; /* Set menu text color to black */
+      text-decoration: none;
+    }
+    .menus a:hover {
+      text-decoration: underline;
+    }
+    .logout-button {
+      background-color: #512da8;
+      height:50px;
+      width:100px;
+      font-size:15px;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .logout-button:hover {
+      background-color: red;
+    }
+    .profile-section {
+      display: flex;
+      align-items: center;
+      margin: 40px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f5f5f5;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      margin-right: 20px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-info {
+      flex: 1;
+    }
+    
+    .user-details {
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .user-details h2 {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .user-details p {
+      margin-bottom: 5px;
+    }
+    
+    .user-details strong {
+      font-weight: bold;
+    }
+    
+  </style>
+</head>
 <body>
-  <div class="wrapper">
-    <nav class="navbar">
-      <div class="logo-container">
-        <img src="your_logo.png" alt="Logo">
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#">Menu 1</a></li>
-        <li><a href="#">Menu 2</a></li>
-        <li><a href="#">Menu 3</a></li>
-      </ul>
-      <a href="#" class="logout-btn">Logout</a>
-    </nav>
+  <nav class="navbar">
+    <img src="static/logo.png" alt="Your logo">
+    <div class="menus">
+      <a href="feed">Feed</a>
+      <a href="assignment">Assignments</a>
+      <a href="profile">Profile</a>
+     <a href="/login_user"> <button class="logout-button">Logout</button></a>
+    </div>
+  </nav>
 
-    <section class="profile-section">
-      <div class="profile-picture">
-        <img src="your_user_pic.jpg" alt="User Profile Picture">
-      </div>
-      <div class="profile-info">
-       
+  <section class="profile-section">
+
+    <div class="profile-info">
+     
 <div class="user-details">
-    <h2>User Details</h2>
-    <p><strong>First Name:</strong>{{  user.first_name }}</p>
-    <p><strong>Last Name:</strong>{{  user.last_name }}</p>
-    <p><strong>Is_Active:</strong>{{  user.is_active }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Date Joined:</strong> {{  user.date_joined }} </p>
-    <p><strong>Last Login:</strong>{{  user.last_login }}</p>
+  <h2>User Details</h2>
+  <p><strong>First Name:</strong>{{  user.first_name }}</p>
+  <p><strong>Last Name:</strong>{{  user.last_name }}</p>
+  <p><strong>Is_Active:</strong>{{  user.is_active }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Date Joined:</strong> {{  user.date_joined }} </p>
+  <p><strong>Last Login:</strong>{{  user.last_login }}</p>
 </div>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
+  <script>
+    const uploadButton = document.querySelector(".upload-button");
+    const fileInput = document.querySelector(".file-btn");
+
+    uploadButton.addEventListener("click", () => {
+      fileInput.click();
+    });
+  </script>
 </body>
 </html>

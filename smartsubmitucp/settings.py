@@ -125,3 +125,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [
     BASE_DIR, "static",
 ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Define the base URL that will be used to serve media files
+MEDIA_URL = '/submissions/'
