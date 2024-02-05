@@ -64,8 +64,9 @@
       .container {
         display: flex;
         margin: auto 0;
+        margin-top:40px;
         width:90%;
-        margin-top:-60px;
+        {% comment %} margin-top:-60px; {% endcomment %}
 
         align-items: center;
         min-height: 100vh;
@@ -100,6 +101,7 @@
       }
   
       .post header .username {
+      
         font-weight: bold;
       }
   
@@ -133,6 +135,21 @@
       .post footer .caption {
         font-size: 14px;
       }
+      .post p{
+        color:black;
+        background-color:black;
+      }
+      .timestamp {
+        
+        margin-left:66%;
+         /* Add some space between the timestamp and username */
+        color: black; /* Set the color of the timestamp */
+    }
+      .test{
+        height:50px;
+        width:700px;
+        background-color:#fff;
+      }
     </style>
 </head>
 <body>
@@ -149,17 +166,35 @@
   <section class="container">
 <center>
   <section class="feed">
-   
+    {% for post in teacher_posts %}
+    <!-- Display each post -->
     <div class="post">
-      <header>
-        <span class="username">johndoe123</span>
-      </header>
-      <img src="static/post.png" alt="Your logo">
+        <header>
+            <span class="username">{{ post.teacher.user.username }}</span>
+           
+            <span class="timestamp">{{ post.created_at }}</span>
+            <!-- Access the teacher's username through the user attribute -->
+        </header>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Post Image">
+            <!-- Assuming you have an image field in your Post model, and 'image' is the field name -->
+        {% endif %}
+        <p>{{ post.content }}</p>
+        
     </div>
+    <hr>
+    <div class="test"></div>
+{% endfor %}
+
+    
+
+
 
     </section>
 </center>
+
 </section>
 </center>
+
 </body>
 </html>

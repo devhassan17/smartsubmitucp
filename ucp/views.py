@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .models import Assignment,Student,Submission
+from .models import Assignment,Student,Submission,Post
 from django.shortcuts import get_object_or_404
 import os
 
@@ -69,7 +69,16 @@ def testing(request):
   
 @login_required
 def feed(request):
-    return render(request, "feed.html", {})  
+    # Get the currently logged-in student
+    student = request.user.student_profile
+    
+    # Get the teacher associated with the student
+    teacher = student.teachers.first()  # Assuming a student can be associated with only one teacher
+    
+    # Get the posts related to the teacher
+    teacher_posts = Post.objects.filter(teacher=teacher)
+    
+    return render(request, "feed.html", {'teacher_posts': teacher_posts})
 
 from django.shortcuts import get_object_or_404
 
