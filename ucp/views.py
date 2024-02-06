@@ -69,13 +69,12 @@ def testing(request):
   
 @login_required
 def feed(request):
-    # Get the currently logged-in student
+    
     student = request.user.student_profile
     
-    # Get the teacher associated with the student
-    teacher = student.teachers.first()  # Assuming a student can be associated with only one teacher
     
-    # Get the posts related to the teacher
+    teacher = student.teachers.first()  
+    
     teacher_posts = Post.objects.filter(teacher=teacher)
     
     return render(request, "feed.html", {'teacher_posts': teacher_posts})
@@ -127,8 +126,8 @@ def assignment(request):
 
 @login_required
 def profile(request):
-    user = request.user  # Get the current logged-in user
-    # Pass the user object to the template
+    user = request.user  
+    
     return render(request, 'profile.html', {'user': user})
 
 from django.shortcuts import render, redirect
@@ -137,7 +136,7 @@ from .models import Submission
 
 def upload_assignment(request):
     
-    return render(request, 'assignment.html')  # Render the assignment upload page template
+    return render(request, 'assignment.html')  
 
 def delete_session(request):
     if request.user.is_authenticated:

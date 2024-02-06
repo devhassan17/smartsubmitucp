@@ -167,18 +167,17 @@
 <center>
   <section class="feed">
     {% for post in teacher_posts %}
-    <!-- Display each post -->
+   
     <div class="post">
         <header>
             <span class="username">{{ post.teacher.user.username }}</span>
            
             <span class="timestamp">{{ post.created_at }}</span>
-            <!-- Access the teacher's username through the user attribute -->
+           
         </header>
         {% if post.image %}
             <img src="{{ post.image.url }}" alt="Post Image">
-            <!-- Assuming you have an image field in your Post model, and 'image' is the field name -->
-        {% endif %}
+                    {% endif %}
         <p>{{ post.content }}</p>
         
     </div>

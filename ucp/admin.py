@@ -44,4 +44,4 @@ class AssignmentAdmin(admin.ModelAdmin):
 class SubmissionAdmin(admin.ModelAdmin):
     list_display = ['assignment', 'student', 'submitted_at']
 
-# You can register other models in a similar fashion
+
