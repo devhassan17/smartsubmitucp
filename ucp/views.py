@@ -3,24 +3,30 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import Assignment,Student,Submission,Post
+from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
 import os
 
 def login_view(request):
     if request.method == "GET":
         username = request.GET.get('username')
         password = request.GET.get('password')
-        if username and password:   
+        if username and password:
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Login successful.')
-                return redirect('feed')  
+                if hasattr(request.user, 'student_profile'):
+                    return redirect('feed')  # Redirect students to feed
+                else:
+                    messages.error(request, 'You are not authorized to access this page.')
+                    return render(request, 'login.html')
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
             messages.error(request, 'Username or password missing.')
-            return render(request, 'login.html') 
+            return render(request, 'login.html')
     return render(request, 'login.html')
 
 def home(request):
@@ -136,12 +142,12 @@ from .models import Submission
 
 def upload_assignment(request):
     
-    return render(request, 'assignment.html')  
+     return render(request, 'assignment.html')  
+
+def show_logged_out(request):
+    return render(request, 'logged_out.html')
 
 def delete_session(request):
     if request.user.is_authenticated:
-        request.session.flush()
-        return redirect('login_user')  
-    else:
-        return redirect('login_user') 
-
+        logout(request)  # Log out the user
+    return render(request, 'logged_out.html')  

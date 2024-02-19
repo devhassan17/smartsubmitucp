@@ -150,6 +150,7 @@
         width:700px;
         background-color:#fff;
       }
+      
     </style>
 </head>
 <body>
@@ -159,7 +160,10 @@
       <a href="feed">Feed</a>
       <a href="assignment">Assignments</a>
       <a href="profile">Profile</a>
-      <a href="/login_user"> <button class="logout-button">Logout</button></a>
+      <form action="/delete_session/" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
     </div>
   </nav>
   <center>

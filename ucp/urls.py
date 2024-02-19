@@ -29,6 +29,8 @@ urlpatterns = [
     path("profile", views.profile ,name='profile'),
     path('logout', views.delete_session, name='logout'),
     path('testing', views.testing, name='examplet'),
+    path('delete_session/', views.delete_session, name='delete_session'),
+     path('accounts/login/', views.show_logged_out, name='show_logged_out'),
     path('', views.upload_assignment, name='upload_assignment'),
 
 ]
